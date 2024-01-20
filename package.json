@@ -4,7 +4,7 @@
   "description": "yo that's gonna be some wild URL stuff",
   "main": "index.js",
   "scripts": {
-    "start": "node main.js",
+    "start": "node --no-warnings main.js",
     "test": "jest"
   },
   "author": "peek",

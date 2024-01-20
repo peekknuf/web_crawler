@@ -1,6 +1,6 @@
 const {crawlPage} = require('./crawl.js')
 
-function main() {
+async function main() {
     if (process.argv.length < 3) {
         console.log('gimme a valid web ffs')
         process.exit(1)
@@ -11,10 +11,14 @@ function main() {
         process.exit(1)
     }
     const theURLgiven = process.argv[2]
+
     console.log(`the crawl of ${theURLgiven} goes brrrrrr`)
-    crawlPage(theURLgiven)
+
+    const pages = await crawlPage(theURLgiven, theURLgiven,{})
+
+    for (const page of Object.entries(pages)){
+        console.log(page)
+    }
 }
-
-
 
 main()
