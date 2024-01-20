@@ -1,3 +1,27 @@
+const {JSDOM} = require('jsdom')
+
+function getURLfromHTML(htmlBody, baseURL) {
+    const urls = []
+    const dom = new JSDOM(htmlBody)
+    const linkElements = dom.window.document.querySelectorAll('a')
+    for (const linkElement of linkElements) {
+        if (linkElement.href.slice(0,1) === '/') {
+            //relative
+            urls.push(`${baseURL}${linkElement}`)
+        } else if (linkElement.href.slice(0,4) === 'http') {
+            //absolute
+            urls.push(linkElement.href)
+        } else {
+            //error handling skills at my best
+            console.log('fuck you gimme a valid url.')
+        }
+       
+    }
+    return urls 
+}
+
+
+
 function normalizeURL(urlString){
     const urlObj = new URL(urlString)
     const hostPath = `${urlObj.hostname}${urlObj.pathname}`
@@ -8,5 +32,6 @@ function normalizeURL(urlString){
 }
 
 module.exports = {
-    normalizeURL
+    normalizeURL,
+    getURLfromHTML
 }
