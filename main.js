@@ -1,3 +1,5 @@
+const {crawlPage} = require('./crawl.js')
+
 function main() {
     if (process.argv.length < 3) {
         console.log('gimme a valid web ffs')
@@ -10,6 +12,7 @@ function main() {
     }
     const theURLgiven = process.argv[2]
     console.log(`the crawl of ${theURLgiven} goes brrrrrr`)
+    crawlPage(theURLgiven)
 }
 
 

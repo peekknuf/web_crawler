@@ -1,5 +1,12 @@
 const {JSDOM} = require('jsdom')
 
+
+async function crawlPage (currentURL) {
+    console.log('know that im working hard boss')
+    const response = await fetch(currentURL)
+    console.log(await response.text())
+}
+
 function getURLfromHTML(htmlBody, baseURL) {
     const urls = []
     const dom = new JSDOM(htmlBody)
@@ -33,5 +40,6 @@ function normalizeURL(urlString){
 
 module.exports = {
     normalizeURL,
-    getURLfromHTML
+    getURLfromHTML,
+    crawlPage
 }
