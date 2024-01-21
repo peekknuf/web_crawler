@@ -4,7 +4,7 @@ const {JSDOM} = require('jsdom')
 async function crawlPage (baseURL, currentURL, pages) {
     const baseURLobj = new URL(baseURL) 
     const currentURLobj = new URL(currentURL)
-    if (baseURLobj.hostname !== currentURL.hostname) {
+    if (baseURLobj.hostname !== currentURLobj.hostname) {
         return pages
     }
     
@@ -15,7 +15,8 @@ async function crawlPage (baseURL, currentURL, pages) {
     }
     
     pages[normCurrURL] = 1
-    console.log('know that im working hard boss')
+
+    console.log(`working hard boss:${currentURL}`)
 
     try {
         const response = await fetch(currentURL)
